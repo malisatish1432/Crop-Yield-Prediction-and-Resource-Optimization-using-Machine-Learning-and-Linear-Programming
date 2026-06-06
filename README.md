@@ -1,852 +1,586 @@
-# 🌾 Crop Yield Prediction and Resource Optimization  
-## Using Machine Learning and Linear Programming
-
----
-
-## 📌 Complete Project Workflow
-
-This project follows a complete **Data Science + Optimization pipeline**.  
-The workflow starts from agricultural data understanding and ends with an intelligent decision-support system that predicts crop yield and optimizes farming resources.
-
----
-
-## 📂 Project Structure
-
-```text
-🌾 Crop Yield Prediction and Resource Optimization
-
-│
-├── 📌 1. Project Introduction
-│       │
-│       └── 🎯 What problem we solved
-│              ├── Crop yield prediction challenge
-│              ├── Efficient fertilizer utilization
-│              ├── Water resource management
-│              └── Profit maximization for agriculture
-│
-
-├── 📊 2. Dataset Understanding
-│       │
-│       ├── 📁 What data we used
-│       │      ├── Historical crop production data
-│       │      ├── Climate information
-│       │      ├── Soil properties
-│       │      └── Fertilizer requirements
-│       │
-│       ├── 🌱 Why each feature matters
-│       │      ├── Temperature effect on crop growth
-│       │      ├── Rainfall contribution
-│       │      ├── Soil pH importance
-│       │      ├── N-P-K fertilizer impact
-│       │      └── Environmental influence
-│       │
-│       └── 🐍 Python Implementation
-│              ├── Dataset loading
-│              ├── Data inspection
-│              └── Statistical analysis
-│
-
-
-├── 🧹 3. Data Cleaning
-│       │
-│       ├── 🔍 Missing Values
-│       │      ├── Check null values
-│       │      └── Handle incomplete records
-│       │
-│       ├── 📌 Duplicate Records
-│       │      ├── Identify duplicates
-│       │      └── Remove repeated information
-│       │
-│       └── ⚙ Why preprocessing required
-│              ├── Improve data quality
-│              ├── Reduce errors
-│              └── Increase model accuracy
-│
-
-
-├── 📈 4. Exploratory Data Analysis (EDA)
-│       │
-│       ├── 📊 What patterns we analyzed
-│       │      ├── Feature distributions
-│       │      ├── Crop production trends
-│       │      ├── Climate relationships
-│       │      └── Yield behavior
-│       │
-│       ├── 📉 Visualization Code
-│       │      ├── Histogram
-│       │      ├── Boxplot
-│       │      ├── Heatmap
-│       │      └── Scatter plots
-│       │
-│       └── 💡 Insights Obtained
-│              ├── Important variables
-│              ├── Feature relationships
-│              └── Data patterns
-│
-
-
-├── 📦 5. Outlier Handling
-│       │
-│       ├── 📐 IQR Theory
-│       │      ├── Q1 and Q3 calculation
-│       │      ├── IQR = Q3 - Q1
-│       │      └── Outlier boundary detection
-│       │
-│       ├── 🐍 Implementation
-│       │      ├── Detect extreme values
-│       │      └── Apply capping method
-│       │
-│       └── 🎯 Why Capping Used
-│              ├── Preserve information
-│              ├── Reduce noise
-│              └── Improve model stability
-│
-
-
-├── 🛠 6. Feature Engineering
-│       │
-│       ├── 🌱 Total Fertilizer Creation
-│       │      ├── Nitrogen (N)
-│       │      ├── Phosphorus (P)
-│       │      ├── Potassium (K)
-│       │      └── Total Fertilizer = N + P + K
-│       │
-│       ├── ❓ Why Created
-│       │      ├── Reduce redundancy
-│       │      ├── Control multicollinearity
-│       │      └── Improve feature quality
-│       │
-│       └── 🐍 Code Explanation
-│              ├── Feature creation
-│              └── Data transformation
-│
-
-
-├── 🔎 7. Feature Selection
-│       │
-│       ├── 🔥 Correlation Analysis
-│       │      ├── Relationship checking
-│       │      └── Heatmap visualization
-│       │
-│       ├── 📊 Variance Inflation Factor (VIF)
-│       │      ├── Detect dependency
-│       │      └── Identify redundant variables
-│       │
-│       └── ⚙ Multicollinearity Removal
-│              ├── Remove highly related features
-│              └── Improve model interpretation
-│
-
-
-├── 🤖 8. Model Development
-│       │
-│       ├── 📈 Linear Regression
-│       │      └── Baseline prediction model
-│       │
-│       ├── 📉 Ridge Regression
-│       │      ├── L2 Regularization
-│       │      └── Reduce overfitting
-│       │
-│       ├── ⭐ Lasso Regression
-│       │      ├── L1 Regularization
-│       │      ├── Feature selection
-│       │      └── Best performing model
-│       │
-│       └── 🌲 Random Forest
-│              ├── Ensemble learning
-│              └── Non-linear prediction
-│
-
-
-├── 📊 9. Model Evaluation
-│       │
-│       ├── 📌 R² Score
-│       │      └── Prediction accuracy
-│       │
-│       ├── 📌 MAE
-│       │      └── Average prediction error
-│       │
-│       ├── 📌 RMSE
-│       │      └── Error magnitude checking
-│       │
-│       └── 📌 Cross Validation
-│              └── Model generalization testing
-│
-
-
-└── 🚀 10. Resource Optimization
-        │
-        ├── 🔗 ML + OR Connection
-        │      ├── ML predicts crop yield
-        │      └── OR optimizes resources
-        │
-        ├── 📈 Linear Programming
-        │      └── Mathematical optimization model
-        │
-        ├── 🎯 Decision Variables
-        │      ├── Fertilizer quantity
-        │      └── Water allocation
-        │
-        ├── 📌 Constraints
-        │      ├── Budget limitation
-        │      ├── Resource availability
-        │      └── Environmental restrictions
-        │
-        └── 💰 Profit Maximization
-               ├── Maximum yield
-               ├── Minimum resource wastage
-               └── Better agricultural planning
-
-```
-
----
-
-
-
-
+# 🌾 Crop Yield Prediction and Resource Optimization Using Machine Learning and Linear Programming
 
 ## 📌 Project Overview
 
-### What we did?
+Agriculture is one of the most important sectors where crop productivity depends on several environmental, soil, and resource-related factors such as rainfall, temperature, humidity, soil pH, fertilizer usage, and water availability.
 
-In this project, we developed a smart agricultural decision-support system by combining Machine Learning and Operational Research.
+Traditional farming decisions are mainly based on experience, which may not always provide accurate yield estimation or efficient resource utilization.
 
-The system performs two major tasks:
+This project develops a **data-driven smart agriculture system** by integrating:
 
-1. Predicts crop yield using historical agricultural data
+- **Machine Learning (ML)** for crop yield prediction
+- **Operational Research (OR)** using Linear Programming for resource optimization
 
-2. Optimizes fertilizer and water resources to maximize farmer profit
-
-
-Instead of only predicting crop production, this project converts prediction into a decision-making solution.
-
+The Machine Learning model predicts crop yield using historical agricultural data, while Linear Programming recommends optimal fertilizer and water usage to maximize profit and reduce resource wastage.
 
 ---
 
-# 📂 Step 1: Dataset Loading and Understanding
+# 🎯 Project Objectives
 
+## 1. Crop Yield Prediction
 
-## What we did?
+The main objective is to build a Machine Learning model that predicts crop yield based on agricultural and environmental conditions.
 
-The first step was loading agricultural historical data and understanding the structure of the dataset.
+Example:
 
-The dataset contains information about:
+```
+Input Features
+      |
+      ↓
+Machine Learning Model
+      |
+      ↓
+Predicted Crop Yield
+```
 
-- Crop details
-- Location
-- Climate conditions
-- Soil properties
-- Fertilizer requirements
+The model learns relationships between factors like rainfall, temperature, soil condition, and fertilizer usage to estimate production.
 
+---
 
-Target Variable:
+## 2. Agricultural Factor Analysis
+
+The project analyzes how different features influence crop yield.
+
+Important factors:
+
+- Rainfall
+- Temperature
+- Humidity
+- Soil pH
+- Fertilizer nutrients
+
+Techniques used:
+
+- Exploratory Data Analysis (EDA)
+- Data Visualization
+- Correlation Analysis
+
+---
+
+## 3. Handling Multicollinearity
+
+Multicollinearity occurs when independent variables are highly correlated with each other.
+
+Example:
+
+```
+Nitrogen (N)
+Phosphorus (P)
+Potassium (K)
+```
+
+Highly related variables can affect model performance.
+
+To solve this problem:
+
+- Correlation analysis was performed
+- Variance Inflation Factor (VIF) was used
+- Unnecessary features were removed
+
+---
+
+## 4. Resource Optimization
+
+Prediction alone does not help farmers make complete decisions.
+
+After predicting yield, Linear Programming answers:
+
+"How much fertilizer and water should be used for maximum profit?"
+
+Optimization provides:
+
+- Best fertilizer quantity
+- Best water allocation
+- Maximum achievable profit
+
+---
+
+# 📊 Dataset Description
+
+The dataset contains approximately **50,000 agricultural records** across different regions.
+
+Each record contains crop, environmental, and resource information.
+
+---
+
+## Dataset Features
+
+| Feature | Description |
+|---|---|
+| Year | Crop cultivation year |
+| State Name | State where crop is grown |
+| District Name | Cultivation district |
+| Crop | Type of crop |
+| Area | Farming area in hectares |
+| Temperature | Average temperature |
+| Humidity | Moisture percentage |
+| Rainfall | Rain received in mm |
+| Soil pH | Soil acidity/alkalinity |
+| Wind Speed | Wind measurement |
+| Solar Radiation | Sunlight energy |
+| Nitrogen (N) | Nitrogen fertilizer requirement |
+| Phosphorus (P) | Phosphorus requirement |
+| Potassium (K) | Potassium requirement |
+
+---
+
+## Target Variable
+
+The value predicted by the model:
 
 ```
 Yield_kg_per_ha
 ```
 
+Meaning:
 
-This represents the amount of crop produced per hectare.
-
+Crop production obtained per hectare.
 
 ---
 
-## Implementation
+# 🛠️ Technologies Used
 
+- Python
+- Machine Learning
+- Statistics
+- Data Science
+- Operational Research
+- Linear Programming
+
+---
+
+# 📚 Python Libraries
+
+## Pandas
+
+Used for data handling and manipulation.
+
+Example:
 
 ```python
-import pandas as pd
-
-df = pd.read_csv(
-"Custom_Crops_yield_Historical_Dataset.csv"
-)
-
 df.head()
+
+df.info()
 ```
 
+---
+
+## NumPy
+
+Used for numerical calculations and array operations.
 
 ---
 
-## Code Explanation
+## Matplotlib & Seaborn
 
+Used for data visualization.
 
-### pandas
+Created:
 
-Used for reading and handling tabular data.
-
-
-### read_csv()
-
-Loads CSV dataset into DataFrame format.
-
-
-### df.head()
-
-Displays first five rows to understand:
-
-- Column names
-- Data format
-- Feature values
-
+- Histogram
+- Boxplot
+- Heatmap
+- Scatter plot
 
 ---
 
-# Dataset Information Checking
+## Scikit-Learn
 
+Used for Machine Learning implementation:
 
-## What we did?
+- Data splitting
+- Model training
+- Prediction
+- Evaluation
 
+---
 
-Before model building, we analyzed:
+## SciPy
 
-- Number of rows
-- Number of columns
-- Datatypes
-- Statistical information
+Used for Linear Programming optimization.
 
+Example:
 
-## Implementation
+```python
+linprog()
+```
+
+---
+
+# 🔄 Project Workflow
+
+# 1. Data Understanding
+
+Initial dataset analysis was performed.
+
+Checked:
+
+- Number of records
+- Column information
+- Data types
+- Statistical summary
 
 
 ```python
 df.info()
 
 df.describe()
-
-df.shape
 ```
 
-
-## Explanation
-
-
-### df.info()
-
-Shows:
-
-- Column datatype
-- Missing values
-- Memory usage
-
-
-### df.describe()
-
-Provides:
-
-- Mean
-- Standard deviation
-- Minimum value
-- Maximum value
-
-
-This helped us understand feature distribution.
-
-
 ---
 
-# 🧹 Step 2: Data Cleaning
+# 2. Data Cleaning
 
+Data preprocessing steps:
 
-## What we did?
+### Missing Values
 
-
-Machine learning requires clean data.
-
-Therefore we checked:
-
-- Missing values
-- Duplicate records
-
-
----
-
-# Missing Value Detection
-
-
-## Implementation
-
+Checked missing data:
 
 ```python
 df.isnull().sum()
 ```
 
-
-## Explanation
-
-
-Missing values can affect model learning.
-
-If missing values exist:
-
-- Replace with mean/median
-
-or
-
-- Remove records
-
-
-In our dataset:
-
-```
-No missing values found
-```
-
+Missing values can reduce model performance.
 
 ---
 
-# Duplicate Checking
+### Duplicate Records
 
-
-## Implementation
-
+Checked duplicate rows:
 
 ```python
 df.duplicated().sum()
 ```
 
-
-## Explanation
-
-
-Duplicate records create biased learning because the model sees repeated examples.
-
-Result:
-
-```
-No duplicate records found
-```
-
+Duplicate data can create biased models.
 
 ---
 
-# 📊 Step 3: Exploratory Data Analysis
+### Column Formatting
 
+Cleaned column names:
 
-## What we did?
+```python
+df.columns = df.columns.str.strip()
+```
 
-
-EDA was performed to understand hidden relationships inside agricultural data.
-
-
-We studied:
-
-
-### Crop behavior
-
-### Weather effect
-
-### Fertilizer impact
-
-### Yield patterns
-
+This improves code readability.
 
 ---
 
-# Correlation Analysis
+# 📈 Exploratory Data Analysis (EDA)
 
+EDA was performed to understand patterns and relationships inside the dataset.
 
-## Why?
+---
 
+## Univariate Analysis
 
-Correlation tells how strongly features are related.
-
+Analysis of a single variable.
 
 Example:
 
+Understanding rainfall distribution.
 
-If Nitrogen and Phosphorus give almost same information, keeping both increases complexity.
+Visualization:
 
+- Histogram
+- Count plot
 
 ---
 
-## Implementation
+## Bivariate Analysis
 
+Study relationship between two variables.
+
+Example:
+
+```
+Rainfall vs Crop Yield
+```
+
+It helps understand how one factor affects another.
+
+---
+
+## Correlation Analysis
+
+Correlation measures relationships between numerical variables.
+
+Range:
+
+```
+-1 to +1
+```
+
+Meaning:
+
+- +1 → Strong positive relationship
+- 0 → No relationship
+- -1 → Strong negative relationship
+
+
+Heatmap was used for visualization.
+
+---
+
+# ⚙️ Feature Engineering
+
+Feature engineering improves model performance by creating better input features.
+
+---
+
+## Total Fertilizer Feature
+
+Combined fertilizer nutrients:
 
 ```python
-correlation = df.corr(
-numeric_only=True
-)
-
-sns.heatmap(
-correlation,
-annot=True
-)
+Total_Fertilizer = N + P + K
 ```
 
+This represents total fertilizer requirement.
 
 ---
 
-## Explanation
+## Outlier Handling
 
+Outliers are extreme values that affect model accuracy.
 
-Heatmap helped identify:
+Example:
 
-- Important features
-
-- Highly correlated variables
-
-- Redundant information
-
-
----
-
-# ⚙️ Step 4: Feature Engineering
-
-
-## What we did?
-
-
-Created a new meaningful variable:
-
+Normal:
 
 ```
-Total Fertilizer
+3000 kg
+4000 kg
+5000 kg
 ```
 
-
-using:
-
-
-Nitrogen + Phosphorus + Potassium
-
-
----
-
-## Why?
-
-
-During correlation analysis:
-
-N, P and K showed high relationship.
-
-
-Keeping all three causes:
-
+Outlier:
 
 ```
-Multicollinearity
+50000 kg
 ```
 
-
-So we combined them.
-
-
----
-
-## Implementation
-
-
-```python
-df["Total_Fertilizer"] = (
-
-df["N_req_kg_per_ha"]
-
-+
-
-df["P_req_kg_per_ha"]
-
-+
-
-df["K_req_kg_per_ha"]
-
-)
-```
-
-
----
-
-## Benefits
-
-
-✔ Reduces model complexity
-
-✔ Removes repeated information
-
-✔ Improves prediction reliability
-
-
----
-
-# 🔥 Step 5: Model Training
-
-
-## What we did?
-
-
-We trained multiple regression algorithms.
-
-
-Because crop yield prediction is a:
+Handled using:
 
 ```
-Regression Problem
+Interquartile Range (IQR)
 ```
 
-
-Output is continuous numeric value.
-
-
 ---
 
-# Linear Regression
+## Encoding Categorical Data
 
+Machine Learning models cannot directly understand text.
 
-## Theory
+Converted categorical values into numerical format.
 
+Example:
 
-Finds relationship:
-
-
-Input Features → Crop Yield
-
-
-Equation:
-
-
-Y = β0 + β1X1 + β2X2 + error
-
-
----
-
-## Implementation
-
-
-```python
-lr = LinearRegression()
-
-lr.fit(
-X_train,
-y_train
-)
-```
-
-
-## Explanation
-
-
-fit()
-
-means model learns patterns from training data.
-
-
----
-
-# Lasso Regression
-
-
-## What we did?
-
-
-Applied L1 regularization model.
-
-
----
-
-## Why?
-
-
-Lasso:
-
-- Reduces overfitting
-
-- Selects important features
-
-- Removes unnecessary variables
-
-
----
-
-## Implementation
-
-
-```python
-lasso = Lasso()
-
-lasso.fit(
-X_train,
-y_train
-)
-```
-
-
----
-
-# 📈 Step 6: Model Evaluation
-
-
-## What we did?
-
-
-Checked model performance using:
-
-
-- R² Score
-- MAE
-- RMSE
-
-
----
-
-## Implementation
-
-
-```python
-r2_score(
-y_test,
-prediction
-)
-
-mean_absolute_error(
-y_test,
-prediction
-)
-```
-
-
----
-
-## Explanation
-
-
-### R² Score
-
-Higher value means better prediction.
-
-
-### MAE
-
-Average difference between actual and predicted yield.
-
-
-### RMSE
-
-Shows prediction error magnitude.
-
-
----
-
-# 🌱 Step 7: Resource Optimization
-
-
-## What we did?
-
-
-After prediction, we connected ML output with Linear Programming.
-
-
-ML answers:
-
-
-"What will be the yield?"
-
-
-Optimization answers:
-
-
-"What resources should be used to get maximum profit?"
-
-
----
-
-# Linear Programming Model
-
-
-## Objective
-
-
-Maximize:
-
+Before:
 
 ```
-Profit = Revenue - Cost
+Rice
+Cotton
 ```
 
+After encoding:
+
+```
+Rice = 1
+Cotton = 0
+```
+
+Technique:
+
+```
+One-Hot Encoding
+```
 
 ---
 
-# Decision Variables
+## Feature Scaling
 
+Scaling converts variables into similar ranges.
 
-Variables controlled by farmer:
+Example:
 
+Before:
 
 ```
-Fertilizer Amount
-
-Water Quantity
+Rainfall = 1000
+pH = 6
 ```
 
+After:
+
+```
+Rainfall = 0.8
+pH = 0.5
+```
 
 ---
 
-# Implementation
+# 🤖 Machine Learning Models
 
+Different regression models were developed and compared.
 
-```python
-problem = LpProblem(
-"Crop Optimization",
-LpMaximize
-)
+---
 
+## Linear Regression
 
-fertilizer = LpVariable(
-"fertilizer",
-lowBound=0
-)
+A baseline model that identifies linear relationships between input variables and crop yield.
 
+---
 
-water = LpVariable(
-"water",
-lowBound=0
-)
+## Ridge Regression
+
+Improved regression model using L2 regularization.
+
+Purpose:
+
+- Reduce overfitting
+- Improve generalization
+
+---
+
+## Lasso Regression
+
+Uses L1 regularization.
+
+Advantages:
+
+- Feature selection
+- Removes less important variables
+- Controls overfitting
+
+**Lasso Regression was selected as the best-performing model.**
+
+---
+
+## Random Forest Regressor
+
+An ensemble model using multiple decision trees.
+
+Advantages:
+
+- Handles complex patterns
+- Captures non-linear relationships
+
+---
+
+# 📊 Model Evaluation
+
+Models were evaluated using:
+
+## MAE
+
+Mean Absolute Error
+
+Measures average prediction error.
+
+Lower value indicates better performance.
+
+---
+
+## MSE
+
+Mean Squared Error
+
+Measures squared difference between actual and predicted values.
+
+---
+
+## RMSE
+
+Root Mean Squared Error
+
+Shows prediction error in original units.
+
+---
+
+## R² Score
+
+Measures model accuracy.
+
+```
+Closer to 1 = Better Model
 ```
 
+---
+
+# 📐 Linear Programming Optimization
+
+After prediction, the ML output is connected with an optimization model.
+
+The goal is:
+
+```
+Maximize Profit = Revenue - Resource Cost
+```
 
 ---
 
-## Explanation
+## Decision Variables
 
+Variables controlled by the optimization model:
 
-LpProblem creates optimization model.
-
-
-LpVariable creates values that the algorithm will optimize.
-
+- Fertilizer quantity
+- Water usage
 
 ---
 
-## 🎯 Final Outcome
+## Constraints
 
-The developed system provides:
+Real-world limitations:
 
-🌾 **Accurate Crop Yield Prediction**
+Examples:
 
-🌱 **Optimal Fertilizer Recommendation**
+Budget:
 
-💧 **Efficient Water Allocation**
+```
+Cost ≤ Available Budget
+```
 
-💰 **Maximum Profit Estimation**
+Water:
 
-This project demonstrates how **Machine Learning + Operational Research** can be integrated to develop an intelligent smart agriculture decision-support system.
+```
+Water Usage ≤ Available Water
+```
 
-# Project Conclusion
+---
 
+# 🌱 Final Output
 
-This project successfully combines:
+The final system provides:
 
-Machine Learning + Linear Programming
+✔ Predicted crop yield
 
+✔ Optimal fertilizer recommendation
 
-Machine Learning provides prediction capability.
+✔ Optimal water allocation
 
-Optimization provides decision-making capability.
+✔ Maximum profit estimation
 
+---
 
-Together they create a smart agriculture system for improving productivity and efficient resource management.
+# 📌 Conclusion
+
+This project combines Machine Learning and Linear Programming to create a smart agriculture decision-support system.
+
+The Machine Learning model predicts crop productivity, while optimization techniques recommend efficient resource allocation.
+
+This integrated ML + OR approach helps:
+
+- Increase agricultural productivity
+- Reduce farming cost
+- Improve resource utilization
+- Support sustainable farming practices
+
+---
 
 # 👨‍💻 Author
 
-## Mali Satish
-
-
-        
+**Mali Satish**  
